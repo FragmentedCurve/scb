@@ -41,6 +41,6 @@ You may scroll with your mouse wheel if it's supported on your system. Right cli
 
 ## Screenshot
 
-This is searching for `main` in `/usr/src/bin/sh/` on FreeBSD.
+A recording of searching around  `/usr/src/bin/sh/` on FreeBSD.
 
-![screenshot](screenshot.png)
+![screenshot](screenshot.gif)
