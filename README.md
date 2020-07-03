@@ -38,3 +38,9 @@ This will bring up the scb viewer. In the viewer you can browse the results of t
 ### Mouse Support
 
 You may scroll with your mouse wheel if it's supported on your system. Right click will open the selected line.
+
+## Screenshot
+
+This is searching for `main` in `/usr/src/bin/sh/` on FreeBSD.
+
+![screenshot](screenshot.png)
