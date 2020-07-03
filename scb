@@ -10,5 +10,4 @@ if [ -z "${2}" ]; then
 else
 	dir="${2}"
 fi
-do_search "${src_string}" "${dir}" | ssrc-select
-
+do_search "${src_string}" "${dir}" | scb-select
