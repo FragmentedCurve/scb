@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+function do_search() {
+	find "${2}" -type f -exec /usr/bin/grep -i -I --with-filename --line-number "${1}" '{}' ';'
+}
+
+src_string="${1}"
+if [ -z "${2}" ]; then
+	dir="."
+else
+	dir="${2}"
+fi
+do_search "${src_string}" "${dir}" | ./ssrc-select
+
