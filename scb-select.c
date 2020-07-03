@@ -277,6 +277,11 @@ int main(int argc, char** argv)
 		}
 	}
 
+	if (l->len == 0) {
+		fprintf(stderr, "Nothing to do.\n");
+		return 0;
+	}
+	
 	init_screen();
 	input_loop(l);
 	endwin();
