@@ -37,7 +37,7 @@ void add_line(struct Lines* l, char* line)
 	
 	if (l->len == l->cap) {
 		l->cap *= 2;
-		l->lines = realloc(l->lines, l->cap);
+		l->lines = realloc(l->lines, l->cap * sizeof (char*));
 		assert(l->lines);
 	}
 
