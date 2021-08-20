@@ -97,25 +97,22 @@ void auto_select(struct Lines* l)
 	}
 }
 
-void draw_line(int row, const char* line)
-{
-	attrset(A_NORMAL);
-	mvprintw(row, 0, "%s", line);
-}
-
-void draw_selected(int row, const char* line)
+void draw_line(int row, const char* line, bool highlight)
 {
 	int rows, cols;
-	int r,c ;
 	size_t len = strlen(line);
 
-	attrset(A_STANDOUT);
+	if (highlight)
+		attrset(A_STANDOUT);
+	else
+		attrset(A_NORMAL);
+
 	getmaxyx(stdscr, rows, cols);
-	mvprintw(row, 0, "%s", line);
-	getyx(stdscr, r, c);
-	for (int i = c; i < cols; i++) {
-		addch(' ');
-	}
+	mvprintw(row, 0, "%.*s", cols, line);
+
+	/* Fill the rest of the row with spaces to highlight the entire row. */
+	if (cols > len)
+		mvprintw(row, len, "%*c", cols - len, ' ');
 }
 
 void draw_frame(struct Lines* l, size_t offset)
@@ -124,11 +121,8 @@ void draw_frame(struct Lines* l, size_t offset)
 	getmaxyx(stdscr, rows, cols);
 	
 	for (int i = offset; (i - offset) < rows && i < l->len; i++) {
-		if (i == l->selected) {
-			draw_selected(i - offset, l->lines[i]);
-		} else {
-			draw_line(i - offset, l->lines[i]);
-		}
+		bool highlight = i == l->selected;
+		draw_line(i - offset, l->lines[i], highlight);
 	}
 }
 
