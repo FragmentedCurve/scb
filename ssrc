@@ -18,4 +18,4 @@ else
 fi
 
 
-do_search "${src_string}" "${dir}" | scb-select
+do_search "${src_string}" "${dir}"

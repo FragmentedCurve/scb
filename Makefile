@@ -1,12 +1,12 @@
 .PHONY: all
 
 CC=clang
-CFLAGS= -lncurses
+CFLAGS= -lncurses -O2 -Wall -Werror
 
-all: scb-select
+all: scb
 
-scb-select: scb-select.c
+scb: scb.c
 	$(CC) $(CFLAGS) -o $@ $@.c
 
 clean:
-	rm -f scb-select
+	rm -f scb
