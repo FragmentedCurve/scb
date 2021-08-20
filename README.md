@@ -34,8 +34,10 @@ can pipe in anything that conforms to format `filename:line
 number:content` for each line. For example,
 
 ```
-shell> grep -H -n '#' README.md | scb
+shell> grep -H -n '^#' README.md | scb
 ```
+
+will give you a list of all the headers in this file.
 
 ### Key Bindings
 
