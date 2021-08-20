@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-function do_search() {
+do_search() {
 	find "${2}" -type f -exec /usr/bin/grep -i -I --with-filename --line-number "${1}" '{}' ';'
 }
 
