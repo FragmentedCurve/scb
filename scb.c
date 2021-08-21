@@ -87,7 +87,8 @@ void init_screen()
 void auto_select(struct Lines* l)
 {
 	int rows, col;
-	
+
+	/* TODO: Separate this code from ncurses. */
 	getmaxyx(stdscr, rows, col);
 
 	if (l->len < rows) {
