@@ -97,10 +97,14 @@ void auto_select(struct Lines* l)
 	}
 }
 
+#define TAB_STRING "    "
+#define TAB_LENGTH (sizeof (TAB_STRING))
+
 void draw_line(int row, const char* line, bool highlight)
 {
 	int rows, cols;
 	size_t len = strlen(line);
+	int char_count = 0;
 
 	if (highlight)
 		attrset(A_STANDOUT);
@@ -108,11 +112,31 @@ void draw_line(int row, const char* line, bool highlight)
 		attrset(A_NORMAL);
 
 	getmaxyx(stdscr, rows, cols);
-	mvprintw(row, 0, "%.*s", cols, line);
+
+	/*
+	  Using mvprintw causes the x,y coords to get
+	  out of sync when tabs are in the line.
+
+	  Therefore, replace the tabs with spaces and
+	  keep track of the char bytes.
+
+	  All in the name of highlighting the entire row.
+	*/
+
+	/* mvprintw(row, 0, "%.*s", cols, line); */
+	for (int i = 0; i < len; i++) {
+		if (line[i] == '\t') {
+			mvprintw(row, char_count, TAB_STRING);
+			char_count += TAB_LENGTH - 1;
+		} else {
+			mvaddch(row, char_count, line[i]);
+			char_count++;
+		}
+	}
 
 	/* Fill the rest of the row with spaces to highlight the entire row. */
-	if (cols > len)
-		mvprintw(row, len, "%*c", cols - len, ' ');
+	if (cols > char_count)
+		mvprintw(row, char_count, "%*c", cols - char_count, ' ');
 }
 
 void draw_frame(struct Lines* l, size_t offset)
