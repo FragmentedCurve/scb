@@ -141,6 +141,8 @@ void draw_line(int row, const char* line, bool highlight)
 	size_t len = strlen(line);
 	int char_count = 0;
 
+	(void) rows; /* Compiler is complaining that rows is unused */
+
 	if (highlight)
 		attrset(A_STANDOUT);
 	else
@@ -202,7 +204,7 @@ void draw_statusbar(struct Lines* l)
 
 	getmaxyx(stdscr, rows, cols);
 	attrset(A_DIM);
-	mvprintw(rows - 1, 0, ":: scb (%d,%d) :::: %n", l->selected + 1, l->len, &n);
+	mvprintw(rows - 1, 0, ":: scb (%lu,%zu) :::: %n", l->selected + 1, l->len, &n);
 
 	if (msg) {
 		attrset(A_BLINK | A_DIM);
