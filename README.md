@@ -45,14 +45,10 @@ will give you a list of all the headers in this file.
   - *Up/Down Arrow* -- Select the next line in that direction.
   - *Page Up/Down* -- Scroll half a screen up or down.
   - *Enter* -- Open file in an editor.
+  - */* -- Search
+  - *:* -- Go to line
   
 ### Mouse Support
 
 You may scroll with your mouse wheel if it's supported on your
 system. Right click will open the selected line.
-
-## Screenshot
-
-A recording of searching around `/usr/src/bin/sh/` on FreeBSD.
-
-![screenshot](screenshot.gif)
