@@ -41,7 +41,7 @@ struct Lines* new_lines()
 void add_line(struct Lines* l, char* line)
 {
 	size_t len = strlen(line);
-	
+
 	if (l->len == l->cap) {
 		l->cap *= 2;
 		l->lines = realloc(l->lines, l->cap * sizeof (char*));
@@ -181,7 +181,7 @@ void draw_frame(struct Lines* l, size_t offset)
 	int rows, cols;
 	getmaxyx(stdscr, rows, cols);
 	rows--;
-	
+
 	for (int i = offset; (i - offset) < rows && i < l->len; i++) {
 		bool highlight = i == l->selected;
 		draw_line(i - offset, l->lines[i], highlight);
@@ -224,7 +224,7 @@ void draw(struct Lines* l)
 	if (l->selected <= rows / 2) {
 		offset = 0;
 	} else if (l->selected >= l->len - (rows / 2)){
-		offset = l->len - rows;		
+		offset = l->len - rows;
 	} else {
 		offset = l->selected - (rows / 2);
 	}
@@ -237,10 +237,10 @@ void draw(struct Lines* l)
 void parse_line(char* line, char** file, char** linenum)
 {
 	char* tok = strchr(line, ':');
-	
+
 	*file = NULL;
 	*linenum = NULL;
-	
+
 	if (!tok) {
 		/* TODO: Why are we strduping this? */
 		*file = strdup(line);
@@ -265,7 +265,7 @@ void open_line(char* line)
 	char* file;
 	char* linenum;
 	char* editor = getenv("EDITOR");
-	
+
 	if (!editor) {
 		editor = DEFAULT_EDITOR;
 	}
@@ -283,9 +283,9 @@ void open_line(char* line)
 		getch();
 		return;
 	}
-	
+
 	/* TODO: Do error checking and reporting on the parsed line. */
-	
+
 	def_prog_mode();
 	endwin();
 	pid_t pid = fork();
@@ -424,7 +424,7 @@ int main(int argc, char** argv)
 	{
 		char* line = NULL;
 		size_t len = 0;
-		
+
 		while (getline(&line, &len, stdin) != -1) {
 			add_line(l, line);
 			line = NULL;
@@ -436,7 +436,7 @@ int main(int argc, char** argv)
 		fprintf(stderr, "Nothing to do.\n");
 		return 0;
 	}
-	
+
 	init_screen();
 	input_loop(l);
 	endwin();
