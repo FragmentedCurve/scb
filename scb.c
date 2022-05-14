@@ -121,6 +121,7 @@ void init_screen()
 void auto_select(struct Lines* l)
 {
 	int rows, col;
+	(void) col; /* GCC claims col is unused. clang behaves. */
 
 	/* TODO: Separate this code from ncurses. */
 	getmaxyx(stdscr, rows, col);
@@ -179,6 +180,7 @@ void draw_line(int row, const char* line, bool highlight)
 void draw_frame(struct Lines* l, size_t offset)
 {
 	int rows, cols;
+	(void) cols; /* GCC claims col is unused. clang behaves. */
 	getmaxyx(stdscr, rows, cols);
 	rows--;
 
@@ -200,6 +202,7 @@ void draw_statusbar(struct Lines* l)
 {
 	int n;
 	int rows, cols;
+	(void) cols; /* GCC claims col is unused. clang behaves. */
 	const char* msg = status_msg(NULL);
 
 	getmaxyx(stdscr, rows, cols);
@@ -216,7 +219,8 @@ void draw(struct Lines* l)
 {
 	size_t offset;
 	int rows, cols;
-	
+	(void) cols; /* GCC claims col is unused. clang behaves. */
+
 	clear();
 	getmaxyx(stdscr, rows, cols);
 	rows--; /* Leave the bottom row for the status bar */
@@ -313,6 +317,7 @@ char* command_input(const char* prefix)
 {
 	int c;
 	int last, rows, cols;
+	(void) cols; /* GCC claims col is unused. clang behaves. */
 	char* buf = malloc(512);
 	char* p = buf;
 
@@ -372,11 +377,13 @@ void input_loop(struct Lines* l)
 			} break;
 			case KEY_PPAGE: {
 				int rows, col;
+				(void) col; /* GCC claims col is unused. clang behaves. */
 				getmaxyx(stdscr, rows, col);
 				select_up(l, rows / 2);
 			} break;
 			case KEY_NPAGE: {
 				int rows, col;
+				(void) col; /* GCC claims col is unused. clang behaves. */
 				getmaxyx(stdscr, rows, col);
 				select_down(l, rows / 2);
 			} break;
