@@ -1,6 +1,5 @@
 .PHONY: all
 
-CC=clang
 CFLAGS= -lncurses -O2 -Wall -Werror
 
 all: scb
