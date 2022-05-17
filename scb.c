@@ -225,7 +225,7 @@ void draw(struct Lines* l)
 	getmaxyx(stdscr, rows, cols);
 	rows--; /* Leave the bottom row for the status bar */
 
-	if (l->selected <= rows / 2) {
+	if (l->selected <= rows / 2 || rows >= l->len) {
 		offset = 0;
 	} else if (l->selected >= l->len - (rows / 2)){
 		offset = l->len - rows;
