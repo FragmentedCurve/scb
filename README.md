@@ -41,12 +41,16 @@ will give you a list of all the headers in this file.
 
 ### Key Bindings
 
-  - *q* -- Quit `scb`.
-  - *Up/Down Arrow* -- Select the next line in that direction.
-  - *Page Up/Down* -- Scroll half a screen up or down.
-  - *Enter* -- Open file in an editor.
-  - */* -- Search
-  - *:* -- Go to line
+| Key         | Behavior                   |
+|-------------|----------------------------|
+| q           | Quit                       |
+| *Up*        | Select line above.         |
+| *Down*      | Select line below.         |
+| *Page Up*   | Scroll up half a screen.   |
+| *Page Down* | Scroll down half a screen. |
+| *Enter*     | Open file in `$EDITOR`.    |
+| /           | Search for keywords.       |
+| :           | Go to line.                |
   
 ### Mouse Support
 
